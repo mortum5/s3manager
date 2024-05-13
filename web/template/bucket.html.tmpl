@@ -192,7 +192,7 @@
 function deleteObject(bucketName, objectName) {
     $.ajax({
         type: 'DELETE',
-        url: '/api/buckets/' + bucketName + '/objects/' + objectName,
+        url: encodeURI('/api/buckets/' + bucketName + '/objects/' + objectName),
         success: function () { location.reload(); }
     })
 }
@@ -299,7 +299,7 @@ function handleGenerateDownloadLink(event) {
 
     $.ajax({
         type: 'GET',
-        url: '/api/buckets/' + {{ $.BucketName }}+ "/objects/" + objectName + "/url?expiry=" + expiryTime,
+        url: encodeURI('/api/buckets/' + {{ $.BucketName }}+ "/objects/" + objectName + "/url?expiry=" + expiryTime),
         success: function (result) {
             genUrlMessage.innerHTML = "";
             document.getElementById("generated-link").setAttribute('value', JSON.parse(result).url);
